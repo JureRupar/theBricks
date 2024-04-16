@@ -9,10 +9,11 @@ function draw() {
   ctx.closePath();
   ctx.fill();
 }
-  var score = 3;
+
+  var score = 4;
 function drawIt() {
   var x = 150;
-  var y = 150;
+  var y = 250;
   var dx = 2;
   var dy = 4;
   var WIDTH;
@@ -28,10 +29,12 @@ function drawIt() {
       return setInterval(draw, 10);
   }
 
+
   function circle(x, y, r) {
       ctx.beginPath();
       ctx.arc(x, y, r, 0, Math.PI * 2, true);
       ctx.closePath();
+      ctx.fillStyle = "#FF8400";
       ctx.fill();
   }
 
@@ -175,8 +178,8 @@ function drawIt() {
       NROWS = 5;
       NCOLS = 5;
       BRICKWIDTH = (WIDTH / NCOLS) - 1;
-      BRICKHEIGHT = 15;
-      PADDING = 1;
+      BRICKHEIGHT = 30;
+      PADDING = 2;
       bricks = new Array(NROWS);
       for (i = 0; i < NROWS; i++) {
           bricks[i] = new Array(NCOLS);
@@ -290,7 +293,7 @@ function drawIt() {
             window.close();
           }
           else{
-            draw();
+            drawIt();
           }
           clearInterval(intervalId);
         }
