@@ -2,11 +2,16 @@
 #canvas{
     border: 4px solid #4F200D;
     border-radius: 7px;
-     background-image: url(slike/logorj.png);
+    background-image: url(slike/logorj.png);
     background-repeat: no-repeat;
     background-color: #FFD93D;
     background-size: 100%;
     background-position-y: center;
+}
+p{
+    font-weight: bold;
+    font-size: 2em;
+    color: #4F200D;
 }
 #kanvas{
     margin: auto;

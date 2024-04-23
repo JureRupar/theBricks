@@ -2,15 +2,13 @@ function draw() {
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
 
-
-
   ctx.beginPath();
   ctx.arc(75, 75, 10, 0, Math.PI * 2, true);
   ctx.closePath();
   ctx.fill();
 }
 
-  var score = 4;
+  var score = 2;
 function drawIt() {
   var x = 150;
   var y = 250;
@@ -19,11 +17,14 @@ function drawIt() {
   var WIDTH;
   var HEIGHT;
   var r = 10;
+  var tocke;
   var ctx;
   var intervalId = init();
 
   function init() {
       ctx = $('#canvas')[0].getContext("2d");
+      tocke = 0;
+      $("#tocke").html(tocke);
       WIDTH = $("#canvas").width();
       HEIGHT = $("#canvas").height();
       return setInterval(draw, 10);
@@ -84,7 +85,7 @@ function drawIt() {
   function init_paddle() {
       paddlex = WIDTH / 2;
       paddleh = 10;
-      paddlew = 75;
+      paddlew = 120;
   }
 
   function draw() {
@@ -275,7 +276,33 @@ function drawIt() {
       col = Math.floor(x/colwidth);
       //Če smo zadeli opeko, vrni povratno kroglo in označi v tabeli, da opeke ni več
     if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 1) {
-    dy = -dy; bricks[row][col] = 0;
+      dy = -dy; bricks[row][col] = 0;
+      tocke += 100; //v primeru, da imajo opeko večjo utež lahko prištevate tudi npr. 2 ali 3; pred tem bi bilo smiselno dodati še kakšen pogoj, ki bi signaliziral mesta opek, ki imajo višjo vrednost
+      $("#tocke").html(tocke);
+    }
+    else if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 2) {
+      dy = -dy; bricks[row][col] = 0;
+      tocke += 100; //v primeru, da imajo opeko večjo utež lahko prištevate tudi npr. 2 ali 3; pred tem bi bilo smiselno dodati še kakšen pogoj, ki bi signaliziral mesta opek, ki imajo višjo vrednost
+      $("#tocke").html(tocke);
+    }
+    if(tocke>=2499){
+      start = false; // ustavi igro
+           clearInterval(intervalId);
+               // Show sweet alert
+              Swal.fire({
+              title: 'Congratulations!',
+              html: `You have a high snap score!`,
+              imageUrl: "url(slike/cat.gif)",
+              imageHeight: 50,
+              confirmButtonColor: 'rgb(69, 171, 177)',
+            backdrop: `rgb(69, 171, 177, 0.2)`
+          }).then((result) => {
+           if (result.isConfirmed) {
+           dx = 0;
+          dy = 0;
+         location.reload(); // Reload the page to restart the game
+        }
+     });
     }
       if (x + dx > WIDTH -r || x + dx < 0+r)
         dx = -dx;
