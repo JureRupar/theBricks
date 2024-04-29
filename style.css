@@ -21,3 +21,17 @@ body{
    background-color: #F6F1E9;
     
 }
+.custom-title {
+    color: #4F200D;
+}
+.custom-text {
+    color: #4F200D;
+}
+.custom-confirm-button {
+    padding: 10px 20px !important;
+    background-color: #FF8400 !important;
+    outline: 4px solid #fab566 !important;
+}
+.custom-icon-color {
+    filter: hue-rotate(220deg) brightness(1) saturate(3) !important;
+}

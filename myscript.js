@@ -22,12 +22,33 @@ function drawIt() {
   var intervalId = init();
 
   function init() {
-      ctx = $('#canvas')[0].getContext("2d");
-      tocke = 0;
-      $("#tocke").html(tocke);
-      WIDTH = $("#canvas").width();
-      HEIGHT = $("#canvas").height();
-      return setInterval(draw, 10);
+    ctx = $('#canvas')[0].getContext("2d");
+    tocke = 0;
+    $("#tocke").html(tocke);
+    WIDTH = $("#canvas").width();
+    HEIGHT = $("#canvas").height();
+
+    // Displaying the SweetAlert right at the start of the game
+    Swal.fire({
+        title: 'Snapchat bricks',
+        text: 'Destroy all the bricks to see the message, remaining attempts: '+score,
+        icon: 'info',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#FF8400',
+        customClass: {
+          icon: 'custom-icon-color',
+          title: 'custom-title',
+          text: 'custom-text',
+          confirmButton: 'custom-confirm-button'
+        }
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // Start the game interval only after the user confirms the alert
+              intervalId = setInterval(draw, 10);
+          }
+      });
+
+      return null; // Return null initially as setInterval will be set after alert confirmation
   }
 
 
@@ -291,11 +312,16 @@ function drawIt() {
                // Show sweet alert
               Swal.fire({
               title: 'Congratulations!',
-              html: `You have a high snap score!`,
-              imageUrl: "url(slike/cat.gif)",
-              imageHeight: 50,
-              confirmButtonColor: 'rgb(69, 171, 177)',
-            backdrop: `rgb(69, 171, 177, 0.2)`
+              html: `Dancing cat was the message`,
+              imageUrl: "slike/cat.gif",
+              imageHeight: 90,
+              confirmButtonColor: 'rgb(0, 0, 0)',
+              customClass: {
+                icon: 'custom-icon-color',
+                title: 'custom-title',
+                text: 'custom-text',
+                confirmButton: 'custom-confirm-button'
+              }
           }).then((result) => {
            if (result.isConfirmed) {
            dx = 0;
