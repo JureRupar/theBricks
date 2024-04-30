@@ -2,8 +2,8 @@
 #canvas{
     border: 4px solid #4F200D;
     border-radius: 7px;
-    background-image: url(slike/logorj.png) !important;
     background-repeat: no-repeat;
+    background-image: url(Slike/logorj.png) !important;
     background-color: #FFD93D;
     background-size: 100%;
     background-position-y: center;

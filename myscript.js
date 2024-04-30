@@ -1,7 +1,6 @@
 function draw() {
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
-
   ctx.beginPath();
   ctx.arc(75, 75, 10, 0, Math.PI * 2, true);
   ctx.closePath();
@@ -11,7 +10,6 @@ function draw() {
   var score = 2;
   var audio = new Audio('slike/odboj.wav');
   audio.volume=0.05;
-  audioZ.volume=0.05;
 function drawIt() {
   var x = 150;
   var y = 250;
