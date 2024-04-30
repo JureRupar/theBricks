@@ -9,6 +9,9 @@ function draw() {
 }
 
   var score = 2;
+  var audio = new Audio('slike/odboj.wav');
+  audio.volume=0.05;
+  audioZ.volume=0.05;
 function drawIt() {
   var x = 150;
   var y = 250;
@@ -298,12 +301,14 @@ function drawIt() {
       //Če smo zadeli opeko, vrni povratno kroglo in označi v tabeli, da opeke ni več
     if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 1) {
       dy = -dy; bricks[row][col] = 0;
-      tocke += 100; //v primeru, da imajo opeko večjo utež lahko prištevate tudi npr. 2 ali 3; pred tem bi bilo smiselno dodati še kakšen pogoj, ki bi signaliziral mesta opek, ki imajo višjo vrednost
+      audio.play();
+      tocke += 100;
       $("#tocke").html(tocke);
     }
     else if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 2) {
       dy = -dy; bricks[row][col] = 0;
-      tocke += 100; //v primeru, da imajo opeko večjo utež lahko prištevate tudi npr. 2 ali 3; pred tem bi bilo smiselno dodati še kakšen pogoj, ki bi signaliziral mesta opek, ki imajo višjo vrednost
+      audio.play();
+      tocke += 100;
       $("#tocke").html(tocke);
     }
     if(tocke>=2499){
@@ -337,6 +342,7 @@ function drawIt() {
       else if (y + dy > HEIGHT -r) {
           if (x > paddlex && x < paddlex + paddlew) {
               dx = 8 * ((x-(paddlex+paddlew/2))/paddlew);
+              audio.play();
               dy = -dy;
             }
         else if (y + dy > HEIGHT-r){
